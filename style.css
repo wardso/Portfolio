@@ -1,0 +1,834 @@
+/* style.css */
+
+/* Google Fonts - Montserrat and Open Sans for a modern, clean look */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600&display=swap');
+
+/* Color Variables - NEW PALETTE (Deep Grays & Muted Purples/Beige) */
+:root {
+    --color-darkest: #18181A;    /* Very deep charcoal/almost black for body background, similar to HYKROX dark */
+    --color-dark: #232326;       /* Slightly lighter dark for cards, navbar, form backgrounds, creating depth */
+    --color-medium-dark: #3A3A3D;/* Mid-dark gray for borders, subtle elements, similar to HYKROX subtle lines */
+    --color-medium-light: #70707D;/* Secondary text, subdued elements, placeholder text */
+    --color-lightest: #EDECEB;   /* Crisp off-white/light beige for primary text, headings, ensures readability */
+    --color-accent: #A98DAD;     /* Muted lavender/dusty purple for highlights and interactive elements, providing a unique color */
+}
+
+/* Global Styles & Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+    font-family: 'Open Sans', sans-serif; /* Primary body font */
+    background-color: var(--color-darkest);
+    color: var(--color-lightest);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scrollbar issues with animations */
+}
+
+a {
+    color: var(--color-accent); /* Default link color */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+a:hover {
+    color: var(--color-lightest);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif; /* Headings font */
+    color: var(--color-lightest);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--color-lightest); /* Primary text color */
+}
+
+/* Section Common Styles */
+.section {
+    padding: 80px 5%; /* Top/bottom padding, horizontal 5% for responsiveness */
+    text-align: center;
+    max-width: 1200px; /* Max width for content */
+    margin: 0 auto; /* Center sections */
+    position: relative; /* For potential background overlays */
+}
+
+.section-title {
+    font-size: 3rem; /* Larger titles, similar to HYKROX headings */
+    margin-bottom: 3.5rem;
+    position: relative;
+    display: inline-block; /* Allows ::after pseudo-element to be centered */
+    padding-bottom: 0.8rem; /* Space for the underline */
+    color: var(--color-lightest);
+    font-weight: 700;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100px; /* Length of the accent underline */
+    height: 5px; /* Thickness of the underline */
+    background-color: var(--color-accent); /* Underline uses the new accent color */
+    border-radius: 2px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background-color: var(--color-accent); /* Buttons use the new accent color */
+    color: var(--color-darkest); /* Button text contrasts with background */
+    border: none;
+    border-radius: 8px; /* Slightly more rounded corners, sleek design */
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    margin: 0.8rem;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.btn:hover {
+    background-color: var(--color-lightest); /* Lightest color on hover */
+    color: var(--color-dark); /* Dark text on light background */
+    transform: translateY(-3px); /* Subtle lift effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn.secondary {
+    background-color: transparent;
+    color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+}
+
+.btn.secondary:hover {
+    background-color: var(--color-accent);
+    color: var(--color-darkest);
+    border-color: var(--color-accent); /* Keep border color consistent when filled */
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: var(--color-dark); /* Slightly lighter dark for the navbar, similar to HYKROX header */
+    color: var(--color-lightest);
+    position: sticky; /* Keeps navbar at the top */
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures navbar is always on top */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+}
+
+.logo {
+    font-size: 2rem; /* Larger logo */
+    font-weight: 800; /* Bolder logo */
+    color: var(--color-accent); /* Make the logo stand out with the new accent color */
+    letter-spacing: 1px;
+}
+
+.nav-links a {
+    color: var(--color-lightest);
+    margin-left: 40px; /* Increased spacing between links */
+    font-weight: 500;
+    font-size: 1.1rem;
+    display: inline-flex; /* To align icon and text */
+    align-items: center;
+    padding: 5px 0; /* Add vertical padding for clickable area */
+    position: relative; /* For underline effect */
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent); /* Underline uses the new accent color */
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active-nav::after { /* Also highlight active nav link */
+    width: 100%;
+}
+
+.nav-links a:hover,
+.nav-links a.active-nav { /* Also highlight active nav link */
+    color: var(--color-accent); /* Nav links highlight with accent color */
+}
+
+.nav-icon {
+    margin-right: 8px;
+    font-size: 1.3rem; /* Slightly larger icons */
+}
+
+.hamburger {
+    display: none; /* Hidden by default on desktop */
+    font-size: 2.5rem; /* Larger hamburger icon */
+    cursor: pointer;
+    color: var(--color-lightest);
+    background: none;
+    border: none;
+    padding: 5px;
+    line-height: 1; /* Ensure vertical alignment */
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Example background with gradient overlay */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/hero-bg.jpg') no-repeat center center/cover; /* Placeholder for hero image */
+    position: relative;
+    overflow: hidden;
+    padding: 20px; /* Ensure content isn't too close to edges on small screens */
+}
+
+/* Subtle background text overlay */
+.hero::before {
+    content: 'ALBERT'; /* Large text overlay, mimicking HYKROX's large 'H' */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(80px, 15vw, 250px); /* Responsive font size */
+    font-weight: 800;
+    color: rgba(169, 141, 173, 0.05); /* Faded accent color for overlay, using the new muted purple */
+    z-index: 1;
+    pointer-events: none; /* Allows clicks to pass through */
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    max-width: 900px; /* Wider content for hero */
+}
+
+.hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive font size */
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.hero-content h1 .highlight {
+    color: var(--color-accent); /* Highlight uses the new accent color */
+}
+
+.hero-content p {
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem); /* Responsive font size */
+    margin-bottom: 2.5rem;
+    color: var(--color-medium-light); /* Slightly lighter for secondary text */
+    font-weight: 300;
+}
+
+.hero-content .buttons {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+/* About Me Section */
+.about-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    align-items: center;
+    gap: 50px; /* More space between image and text */
+    text-align: left;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-img {
+    flex: 1;
+    min-width:300px; /* Minimum width for the image */
+    max-width: 400px; /* Max width for image */
+    border-radius: 12px; /* Slightly more rounded corners, modern feel */
+    object-fit: cover;
+    height: auto;
+    border: 4px solid var(--color-medium-dark); /* Stronger subtle border */
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+    transition: transform 0.3s ease; /* For subtle hover */
+}
+
+.about-img:hover {
+    transform: scale(1.05); /* Slight scale on hover */
+}
+
+.about-text {
+    flex: 2;
+    min-width: 320px; /* Minimum width for text block */
+    color: var(--color-lightest);
+}
+
+.about-text p {
+    font-size: 1.15rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-lightest);
+}
+
+/* What I Can Do (Skills) Section */
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 40px; /* More space between cards */
+    padding: 0 20px;
+}
+
+.skill-card {
+    background-color: var(--color-dark); /* Darker background for cards, similar to HYKROX cards */
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    text-align: center;
+    border: 1px solid var(--color-medium-dark); /* Subtle border */
+    position: relative; /* For pseudo-element */
+    overflow: hidden; /* For inner glow effect */
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(169, 141, 173, 0.1) 0%, transparent 70%); /* Uses accent color for subtle glow */
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    z-index: 0;
+}
+
+.skill-card:hover::before {
+    transform: scale(1);
+}
+
+.skill-card:hover {
+    transform: translateY(-12px); /* Lift more on hover */
+    background-color: var(--color-medium-dark); /* Slightly lighter on hover */
+    border-color: var(--color-accent); /* Accent border on hover, visually appealing */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.skill-card h3 {
+    color: var(--color-accent); /* Highlight skill titles with new accent */
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+}
+
+.skill-card p {
+    color: var(--color-lightest);
+    font-size: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Stats Section Styles */
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px;
+    padding: 0 20px;
+    margin-top: 50px; /* Space from title */
+}
+
+.stat-item {
+    flex: 1;
+    min-width: 180px;
+    max-width: 250px;
+    background-color: var(--color-dark); /* Uses dark background for cards */
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--color-medium-dark);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.stat-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.stat-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: block; /* Ensures icon is on its own line */
+    color: var(--color-accent); /* Icons use accent color */
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-accent); /* Numbers use accent color */
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    color: var(--color-lightest);
+}
+
+/* Portfolio Section */
+.portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px; /* More space between projects */
+    padding: 0 20px;
+}
+
+.project-card {
+    background-color: var(--color-dark); /* Dark background for project cards */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    border: 1px solid var(--color-medium-dark); /* Subtle border */
+    position: relative; /* For overlay */
+}
+
+.project-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.project-card img {
+    width: 100%;
+    height: 220px; /* Slightly taller images, adjusted for consistency */
+    object-fit: cover;
+    border-bottom: 3px solid var(--color-medium-dark);
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover img {
+    transform: scale(1.05); /* Slight zoom on image hover */
+}
+
+.project-card h3 {
+    color: var(--color-accent); /* Project titles use new accent color */
+    margin: 25px 25px 12px 25px; /* More internal padding */
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+.project-card p {
+    color: var(--color-lightest);
+    padding: 0 25px 25px 25px;
+    font-size: 1rem;
+}
+
+/* Testimonials Section Styles */
+.testimonials-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px; /* Consistent spacing with other card sections */
+    padding: 0 20px;
+    margin-top: 20px; /* Space from title */
+}
+
+.testimonial-card {
+    background-color: var(--color-dark); /* Uses dark background for cards */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    border: 1px solid var(--color-medium-dark); /* Subtle border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px); /* Lift on hover */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: var(--color-lightest);
+    font-size: 1.05rem;
+}
+
+.testimonial-card h4 {
+    color: var(--color-accent); /* Accent for the name */
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Contact Section - Overall Layout */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows columns to stack on smaller screens */
+    justify-content: space-between; /* Pushes content to edges */
+    align-items: flex-start; /* Align items to the top */
+    gap: 60px; /* Space between the info column and the form */
+    max-width: 1000px; /* Adjust max-width as needed */
+    margin: 0 auto;
+    text-align: left; /* Align text within columns to the left */
+    padding-top: 20px; /* Space from the section title */
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 300px; /* Minimum width for the info column */
+    padding: 20px;
+    background-color: var(--color-dark); /* Same dark background as form/cards */
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--color-medium-dark);
+}
+
+.contact-info h3 {
+    font-size: 2rem;
+    color: var(--color-lightest); /* Headings in info section use lightest text */
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.contact-info p {
+    font-size: 1rem;
+    color: var(--color-medium-light); /* Lighter text for main info paragraphs */
+    margin-bottom: 1rem;
+}
+
+.contact-details {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.contact-details p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    color: var(--color-lightest); /* Contact details text uses lightest */
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    color: var(--color-accent); /* Icons use accent color */
+    line-height: 1; /* Ensures vertical alignment */
+}
+
+.social-links {
+    margin-top: 2rem;
+    display: flex;
+    gap: 20px; /* Space between social icons */
+}
+
+.social-icon {
+    display: inline-block;
+    width: 40px; /* Size of social icons */
+    height: 40px;
+    border-radius: 50%; /* Make them circular */
+    background-color: var(--color-medium-dark); /* Background for icons */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--color-accent); /* Accent background on hover */
+    transform: translateY(-3px);
+}
+
+.social-icon img {
+    width: 22px; /* Size of the actual icon image inside the circle */
+    height: 22px;
+    filter: invert(100%); /* Make sure icon is white if image is dark */
+}
+
+/* Contact Form - Styling */
+.contact-form {
+    flex: 1.5; /* Form takes more space */
+    min-width: 320px; /* Minimum width for the form column */
+    padding: 40px;
+    background-color: var(--color-dark); /* Dark background for contact form */
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--color-medium-dark);
+    display: flex; /* Ensure flex properties apply */
+    flex-direction: column; /* Stack form elements vertically */
+    gap: 20px; /* Space between fields */
+}
+
+.contact-form .form-group-inline {
+    display: flex;
+    gap: 20px; /* Space between Name and Email fields */
+}
+
+.contact-form .form-group-inline input {
+    flex: 1; /* Each input takes equal space within the inline group */
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 18px;
+    border: 1px solid var(--color-medium-dark);
+    border-radius: 8px;
+    background-color: var(--color-darkest); /* Darker background for inputs */
+    color: var(--color-lightest);
+    font-size: 1.05rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input[type="text"]::placeholder,
+.contact-form input[type="email"]::placeholder,
+.contact-form textarea::placeholder {
+    color: var(--color-medium-light);
+    opacity: 0.7;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+    border-color: var(--color-accent);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(169, 141, 173, 0.4);
+    background-color: var(--color-dark);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form .btn {
+    align-self: flex-start; /* Align button to the left, like DeFi X */
+    margin-top: 15px;
+    width: auto; /* Allow button to size naturally based on content */
+    padding: 14px 40px; /* Slightly wider button */
+}
+
+/* Footer */
+.footer {
+    background-color: var(--color-dark);
+    color: var(--color-medium-light);
+    text-align: center;
+    padding: 30px; /* More padding */
+    font-size: 0.95rem;
+    border-top: 1px solid var(--color-medium-dark);
+    margin-top: 50px; /* Space above footer */
+}
+
+/* Animation Classes (Controlled by JavaScript Intersection Observer) */
+.slide-up {
+    opacity: 0;
+    transform: translateY(30px); /* Starts lower */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Slower, smoother transition */
+}
+
+.slide-in {
+    opacity: 0;
+    transform: translateX(-30px); /* Starts further left */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.slide-in {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.slide-up.is-visible,
+.slide-in.is-visible {
+    opacity: 1;
+    transform: translateY(0) translateX(0); /* Combined reset */
+}
+
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .nav-links a {
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap; /* Allow items to wrap */
+        padding: 15px 5%;
+    }
+
+    .logo {
+        font-size: 1.6rem;
+    }
+
+    .nav-links {
+        display: none; /* Hidden by default on mobile */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%; /* Position below navbar */
+        left: 0;
+        background-color: var(--color-dark);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        padding-bottom: 10px;
+        border-top: 1px solid var(--color-medium-dark);
+    }
+
+    .nav-links.active { /* Toggled by JS to show mobile menu */
+        display: flex;
+    }
+
+    .nav-links a {
+        margin: 10px 0;
+        padding: 12px 5%; /* Full width clickable area */
+        text-align: left;
+        width: 100%;
+        border-bottom: 1px solid rgba(58, 58, 61, 0.3); /* Subtle separator, using a slightly faded medium-dark */
+    }
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger on mobile */
+    }
+
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .section {
+        padding: 60px 4%; /* Reduce padding on smaller screens */
+    }
+
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .about-img {
+        max-width: 90%; /* Adjust image size on small screens */
+    }
+
+    .skills-container, .portfolio-container {
+        gap: 30px;
+    }
+
+    .skill-card, .project-card {
+        padding: 25px;
+    }
+
+    .project-card img {
+        height: 200px;
+    }
+
+    /* Mobile Responsiveness for Contact Section */
+    .contact-container {
+        flex-direction: column; /* Stack columns vertically */
+        gap: 40px; /* Reduced gap when stacked */
+        text-align: center; /* Center text when stacked */
+    }
+
+    .contact-info, .contact-form {
+        min-width: unset; /* Remove min-width restrictions */
+        width: 100%; /* Take full width */
+        padding: 30px; /* Adjust padding */
+    }
+
+    .contact-info h3 {
+        font-size: 1.8rem;
+    }
+
+    .contact-info p {
+        font-size: 0.95rem;
+    }
+
+    .contact-details p {
+        justify-content: center; /* Center contact details */
+    }
+
+    .social-links {
+        justify-content: center; /* Center social icons */
+    }
+
+    .contact-form .form-group-inline {
+        flex-direction: column; /* Stack inline inputs on small screens */
+        gap: 20px;
+    }
+
+    .contact-form .btn {
+        align-self: center; /* Center button when stacked */
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    .buttons {
+        flex-direction: column; /* Stack buttons on very small screens */
+        align-items: center;
+    }
+    .btn {
+        width: 80%; /* Make buttons wider */
+        margin: 0.5rem 0;
+    }
+
+    .contact-form {
+        padding: 30px 20px;
+    }
+}
